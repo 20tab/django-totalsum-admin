@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
-import previewadmin
+import totalsum
 
 setup(name='twentytab-totalsum-admin',
-      version=previewadmin.__version__,
+      version=totalsum.__version__,
       description='A django app that initializes admin changelist view with last row in results as sum of some numerical fields or properties',
       author='20tab S.r.l.',
       author_email='info@20tab.com',
