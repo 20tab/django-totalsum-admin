@@ -33,6 +33,20 @@
 {% endif %}
 <tr class="{% cycle 'row1' 'row2' %}">{% for item in result %}{{ item }}{% endfor %}</tr>
 {% endfor %}
+
+{% if pagination_required %}
+<tr class="totals">
+{% for header in result_headers %}
+    {% with header.text as header_text %}
+    <td>
+        {% if totals|get_total:header_text != '' %}
+        <a href="?all=">...</a>
+        {% endif %}
+    </td>
+    {% endwith %}
+{% endfor %}
+</tr>
+{% endif%}
 <tr class="totals">
 {% for header in result_headers %}
     {% with header.text as header_text %}
