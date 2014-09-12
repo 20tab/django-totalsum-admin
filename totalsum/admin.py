@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.contrib import admin
+from django.contrib.admin.util import label_for_field
 from django.db.models import Sum
 from django.db.models.fields import FieldDoesNotExist
 
@@ -23,13 +24,15 @@ class TotalsumAdmin(admin.ModelAdmin):
                 self.model._meta.get_field_by_name(elem)  # Checking if elem is a field
                 total = filtered_query_set.aggregate(totalsum_field=Sum(elem))['totalsum_field']
                 if total is not None:
-                    extra_context['totals'][elem] = round(total, self.totalsum_decimal_places)
+                    extra_context['totals'][label_for_field(elem, self.model, self)] = round(
+                        total, self.totalsum_decimal_places)
             except FieldDoesNotExist:  # maybe it's a property
                 if hasattr(self.model, elem):
                     total = 0
                     for f in filtered_query_set:
                         total += getattr(f, elem, 0)
-                    extra_context['totals'][elem] = round(total, self.totalsum_decimal_places)
+                    extra_context['totals'][label_for_field(elem, self.model, self)] = round(
+                        total, self.totalsum_decimal_places)
 
         response.context_data.update(extra_context)
         return response
