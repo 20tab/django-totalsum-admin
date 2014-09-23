@@ -15,7 +15,7 @@ class TotalsumAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         response = super(TotalsumAdmin, self).changelist_view(request, extra_context)
-        if isinstance(response, HttpResponseRedirect):
+        if not hasattr(response, 'context_data') or 'cl' not in response.context_data:
             return response
         filtered_query_set = response.context_data["cl"].queryset
         extra_context = extra_context or {}
