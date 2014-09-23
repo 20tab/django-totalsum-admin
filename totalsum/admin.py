@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.admin.util import label_for_field
 from django.db.models import Sum
 from django.db.models.fields import FieldDoesNotExist
+from django.http import HttpResponseRedirect
 
 
 class TotalsumAdmin(admin.ModelAdmin):
@@ -14,6 +15,8 @@ class TotalsumAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         response = super(TotalsumAdmin, self).changelist_view(request, extra_context)
+        if isinstance(response, HttpResponseRedirect):
+            return response
         filtered_query_set = response.context_data["cl"].queryset
         extra_context = extra_context or {}
         extra_context['totals'] = {}
