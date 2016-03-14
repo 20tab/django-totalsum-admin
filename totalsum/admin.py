@@ -1,9 +1,8 @@
 from __future__ import unicode_literals
 from django.contrib import admin
-from django.contrib.admin.util import label_for_field
+from django.contrib.admin.utils import label_for_field
 from django.db.models import Sum
 from django.db.models.fields import FieldDoesNotExist
-from django.http import HttpResponseRedirect
 
 
 class TotalsumAdmin(admin.ModelAdmin):
@@ -39,5 +38,3 @@ class TotalsumAdmin(admin.ModelAdmin):
 
         response.context_data.update(extra_context)
         return response
-
-
