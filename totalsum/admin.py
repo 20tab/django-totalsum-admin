@@ -23,7 +23,7 @@ class TotalsumAdmin(admin.ModelAdmin):
 
         for elem in self.totalsum_list:
             try:
-                self.model._meta.get_field_by_name(elem)  # Checking if elem is a field
+                self.model._meta.get_field(elem)  # Checking if elem is a field
                 total = filtered_query_set.aggregate(totalsum_field=Sum(elem))['totalsum_field']
                 if total is not None:
                     extra_context['totals'][label_for_field(elem, self.model, self)] = round(
