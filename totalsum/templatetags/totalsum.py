@@ -1,7 +1,7 @@
 """
 Contains some common filter as utilities
 """
-from django.template import Library, loader, Context
+from django.template import Library, loader
 from django.contrib.admin.templatetags.admin_list import result_headers, result_hidden_fields, results, admin_actions
 
 
@@ -31,7 +31,7 @@ def totalsum_result_list(context, cl, totals, unit_of_measure, template_name="to
     }
 
     t = loader.get_template(template_name)
-    return t.render(Context(c))
+    return t.render(c)
 
 
 @register.filter
