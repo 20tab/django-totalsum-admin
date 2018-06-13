@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.admin.utils import label_for_field
 from django.db.models import Sum
