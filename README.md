@@ -1,11 +1,11 @@
-twentytab-totalsum-admin
+django-totalsum-admin
 ========================
 
 A django app that initializes admin changelist view with last row in results as sum of some numerical fields or properties
 
 ## Installation
 
-Use the following command: <b><i>pip install twentytab-totalsum-admin</i></b>
+Use the following command: <b><i>pip install django-totalsum-admin</i></b>
 
 ## Configuration
 
