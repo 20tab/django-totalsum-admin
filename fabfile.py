@@ -1,12 +1,12 @@
-from fabric.api import local, run, cd
-from fabric.state import output
 import totalsum
+from fabric.api import cd, local, run
+from fabric.state import output
 
 
 def publish(message):
     v = totalsum.__version__
 
-    output['everything'] = True
+    output["everything"] = True
     local("git pull")
     try:
         local("git add -A")
