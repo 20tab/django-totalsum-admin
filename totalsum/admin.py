@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin.utils import label_for_field
 from django.db.models import Sum
-from django.db.models.fields import FieldDoesNotExist
+from django.core.exceptions import FieldDoesNotExist
 
 
 class TotalsumAdmin(admin.ModelAdmin):
