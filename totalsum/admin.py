@@ -34,7 +34,14 @@ class TotalsumAdmin(admin.ModelAdmin):
                 if hasattr(self.model, elem):
                     total = 0
                     for f in filtered_query_set:
-                        total += getattr(f, elem, 0)
+                        try:
+                            total += getattr(f, elem, 0)
+                        except TypeError:
+                            # This allows calculating totals of columns
+                            # that are generated from functions in the model
+                            # by simply calling the function reference that 
+                            # getattr returns 
+                            total += getattr(f, elem, 0)()
                     extra_context["totals"][
                         label_for_field(elem, self.model, self)
                     ] = round(total, self.totalsum_decimal_places)
