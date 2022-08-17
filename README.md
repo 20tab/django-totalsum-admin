@@ -13,9 +13,11 @@ Use the following command: <b><i>pip install django-totalsum-admin</i></b>
 
 ```py
 INSTALLED_APPS = {
-    ...,
+    # ...,
+    'django.contrib.humanize',
+    # ...,
     'totalsum',
-    ...
+    # ...,
 }
 ```
 
