@@ -1,4 +1,4 @@
-{% load i18n static %}
+{% load humanize i18n static %}
 {% load totalsum %}
 {% if result_hidden_fields %}
 <div class="hiddenfields">{# DIV for HTML validation #}
@@ -50,10 +50,12 @@
 <tr class="totals">
 {% for header in result_headers %}
     {% with header.text as header_text %}
-    <td>
-        {% if totals|get_total:header_text != '' %}
-        {{ totals|get_total:header_text }} {{ unit_of_measure|safe }}
-        {% endif %}
+    <td style="white-space: nowrap;">
+        {% with totals|get_total:header_text as total %}
+            {% if total %}
+                {{ total|intcomma }} {{ unit_of_measure|safe }}
+            {% endif %}
+        {% endwith %}
     </td>
     {% endwith %}
 {% endfor %}
