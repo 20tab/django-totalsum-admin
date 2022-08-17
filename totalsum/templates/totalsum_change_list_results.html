@@ -50,10 +50,10 @@
 <tr class="totals">
 {% for header in result_headers %}
     {% with header.text as header_text %}
-    <td>
         {% if totals|get_total:header_text != '' %}
         {{ totals|get_total:header_text }} {{ unit_of_measure|safe }}
         {% endif %}
+    <td style="white-space: nowrap;">
     </td>
     {% endwith %}
 {% endfor %}
